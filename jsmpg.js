@@ -1,4 +1,9 @@
-(function(window){ 'use strict';
+module.exports = (function (window){ 'use strict';
+
+var WebSocket = require('ws');
+
+var jsdom = require('jsdom').jsdom;
+var document = jsdom("hello world");
 
 var jsmpeg = window.jsmpeg = function(url, opts) {
 	opts = opts || {};
@@ -46,6 +51,7 @@ var jsmpeg = window.jsmpeg = function(url, opts) {
 	else {
 		this.load(url);
 	}
+
 };
 
 
@@ -2664,5 +2670,8 @@ BitReader.prototype.rewind = function(count) {
 	return (this.index -= count);
 };
 
-})(window);
+return jsmpeg;
+
+})(typeof window === 'undefined'? this['window']={}:window);
+
 
